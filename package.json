@@ -1,0 +1,14 @@
+{
+  "name": "minecraft-ai-player-bedrock",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Autonomous AI-player add-on for Minecraft Bedrock.",
+  "scripts": {
+    "test": "node --test tests/*.test.mjs",
+    "check:brain": "node --check AIPlayers_BP/scripts/core/brain.js"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}

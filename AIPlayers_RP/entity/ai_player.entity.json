@@ -1,0 +1,42 @@
+{
+  "format_version": "1.10.0",
+  "minecraft:client_entity": {
+    "description": {
+      "identifier": "aip:player",
+      "materials": {
+        "default": "entity_alphatest"
+      },
+      "textures": {
+        "steve": "textures/entity/steve",
+        "alex": "textures/entity/alex"
+      },
+      "geometry": {
+        "default": "geometry.humanoid.custom"
+      },
+      "animations": {
+        "base_pose": "animation.humanoid.base_pose",
+        "look": "animation.humanoid.look_at_target.default",
+        "move": "animation.humanoid.move",
+        "attack": "animation.humanoid.attack.rotations",
+        "riding": "animation.humanoid.riding"
+      },
+      "scripts": {
+        "animate": [
+          "base_pose",
+          "look",
+          { "move": "query.modified_move_speed" },
+          { "attack": "query.is_swinging" },
+          { "riding": "query.is_riding" }
+        ]
+      },
+      "render_controllers": [
+        "controller.render.aip.player"
+      ],
+      "enable_attachables": true,
+      "spawn_egg": {
+        "base_color": "#3A7BD5",
+        "overlay_color": "#F5F7FA"
+      }
+    }
+  }
+}

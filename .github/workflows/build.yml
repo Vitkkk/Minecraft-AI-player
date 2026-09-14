@@ -1,0 +1,55 @@
+name: Build Bedrock Add-On
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  validate-and-package:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Parse every JavaScript module
+        shell: bash
+        run: |
+          find AIPlayers_BP/scripts -name '*.js' -print0 |
+            xargs -0 -n1 node --check
+
+      - name: Test decision engine
+        run: npm test
+
+      - name: Validate and build mcaddon
+        run: python3 tools/build.py dist
+
+      - name: Upload workflow artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: AI-Players-Bedrock
+          path: |
+            dist/AI-Players-Bedrock.mcaddon
+            dist/AI-Players-Bedrock.mcaddon.sha256
+          if-no-files-found: error
+
+      - name: Publish rolling download
+        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          if gh release view latest >/dev/null 2>&1; then
+            gh release upload latest               dist/AI-Players-Bedrock.mcaddon               dist/AI-Players-Bedrock.mcaddon.sha256               --clobber
+          else
+            gh release create latest               dist/AI-Players-Bedrock.mcaddon               dist/AI-Players-Bedrock.mcaddon.sha256               --title "AI Players — versão automática"               --notes "Build validado automaticamente da branch main."
+          fi

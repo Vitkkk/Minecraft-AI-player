@@ -1,0 +1,22 @@
+{
+  "format_version": 2,
+  "header": {
+    "name": "AI Players — Resources",
+    "description": "Visual humanoide, nomes e interface dos jogadores autônomos.",
+    "uuid": "ab1574d6-840f-451f-8053-bf143e821d7a",
+    "version": [0, 1, 0],
+    "min_engine_version": [1, 26, 0]
+  },
+  "modules": [
+    {
+      "type": "resources",
+      "uuid": "509e91e7-b7d1-4cc5-b402-61e4cc54c5c7",
+      "version": [0, 1, 0]
+    }
+  ],
+  "metadata": {
+    "authors": ["Vitors Sonic", "OpenAI Codex"],
+    "license": "MIT",
+    "product_type": "addon"
+  }
+}

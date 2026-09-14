@@ -1,0 +1,5 @@
+pack.name=AI Players
+pack.description=Jogadores autônomos que sobrevivem e tentam zerar o Minecraft.
+entity.aip:player.name=Jogador IA
+item.spawn_egg.entity.aip:player.name=Invocar Jogador IA
+action.interact.aip.manage=Gerenciar Jogador IA

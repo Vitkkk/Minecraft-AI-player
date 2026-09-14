@@ -1,0 +1,43 @@
+{
+  "format_version": 2,
+  "header": {
+    "name": "AI Players — Behavior",
+    "description": "Jogadores autônomos que exploram, mineram, constroem, lutam e tentam zerar o jogo.",
+    "uuid": "dd6f5377-3a6e-4da6-8b92-cb60a8c28a11",
+    "version": [0, 1, 0],
+    "min_engine_version": [1, 26, 0]
+  },
+  "modules": [
+    {
+      "type": "data",
+      "uuid": "c0b9ba5b-4717-4cc5-9162-09c164d603a2",
+      "version": [0, 1, 0]
+    },
+    {
+      "type": "script",
+      "language": "javascript",
+      "entry": "scripts/main.js",
+      "uuid": "6fd15ca6-3214-43b8-bd36-4594072b0cc4",
+      "version": [0, 1, 0]
+    }
+  ],
+  "dependencies": [
+    {
+      "uuid": "ab1574d6-840f-451f-8053-bf143e821d7a",
+      "version": [0, 1, 0]
+    },
+    {
+      "module_name": "@minecraft/server",
+      "version": "2.9.0"
+    },
+    {
+      "module_name": "@minecraft/server-ui",
+      "version": "2.1.0"
+    }
+  ],
+  "metadata": {
+    "authors": ["Vitors Sonic", "OpenAI Codex"],
+    "license": "MIT",
+    "product_type": "addon"
+  }
+}

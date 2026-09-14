@@ -1,0 +1,5 @@
+pack.name=AI Players
+pack.description=Autonomous players that survive and attempt to beat Minecraft.
+entity.aip:player.name=AI Player
+item.spawn_egg.entity.aip:player.name=Spawn AI Player
+action.interact.aip.manage=Manage AI Player

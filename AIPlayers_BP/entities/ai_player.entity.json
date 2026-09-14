@@ -1,0 +1,169 @@
+{
+  "format_version": "1.26.0",
+  "minecraft:entity": {
+    "description": {
+      "identifier": "aip:player",
+      "is_spawnable": true,
+      "is_summonable": true
+    },
+    "component_groups": {
+      "aip:skin_steve": {
+        "minecraft:variant": { "value": 0 }
+      },
+      "aip:skin_alex": {
+        "minecraft:variant": { "value": 1 }
+      },
+      "aip:mode_idle": {
+        "minecraft:movement": { "value": 0.24 },
+        "minecraft:knockback_resistance": { "value": 0.05 }
+      },
+      "aip:mode_work": {
+        "minecraft:movement": { "value": 0.31 },
+        "minecraft:knockback_resistance": { "value": 0.12 }
+      },
+      "aip:mode_sprint": {
+        "minecraft:movement": { "value": 0.39 },
+        "minecraft:knockback_resistance": { "value": 0.18 }
+      },
+      "aip:mode_guard": {
+        "minecraft:movement": { "value": 0.17 },
+        "minecraft:knockback_resistance": { "value": 0.75 }
+      }
+    },
+    "components": {
+      "minecraft:type_family": {
+        "family": ["aip_player", "mob", "humanoid"]
+      },
+      "minecraft:collision_box": {
+        "width": 0.6,
+        "height": 1.8
+      },
+      "minecraft:health": {
+        "value": 20,
+        "max": 20
+      },
+      "minecraft:attack": {
+        "damage": [2, 4]
+      },
+      "minecraft:movement": {
+        "value": 0.31
+      },
+      "minecraft:movement.basic": {
+        "max_turn": 35
+      },
+      "minecraft:navigation.walk": {
+        "avoid_damage_blocks": true,
+        "avoid_water": false,
+        "can_jump": true,
+        "can_open_doors": true,
+        "can_pass_doors": true,
+        "can_path_over_water": false,
+        "can_sink": false,
+        "can_swim": true,
+        "can_walk": true
+      },
+      "minecraft:jump.static": {
+        "jump_power": 0.45
+      },
+      "minecraft:can_climb": {},
+      "minecraft:physics": {},
+      "minecraft:pushable": {
+        "is_pushable": true,
+        "is_pushable_by_piston": true
+      },
+      "minecraft:breathable": {
+        "total_supply": 15,
+        "suffocate_time": 0
+      },
+      "minecraft:inventory": {
+        "additional_slots_per_strength": 0,
+        "can_be_siphoned_from": false,
+        "container_type": "inventory",
+        "inventory_size": 36,
+        "private": true,
+        "restrict_to_owner": false
+      },
+      "minecraft:nameable": {
+        "always_show": true,
+        "allow_name_tag_renaming": true
+      },
+      "minecraft:persistent": {},
+      "minecraft:interact": {
+        "interactions": [
+          {
+            "cooldown": 0.25,
+            "interact_text": "action.interact.aip.manage",
+            "play_sounds": "random.orb",
+            "swing": false,
+            "use_item": false
+          }
+        ]
+      },
+      "minecraft:behavior.float": {
+        "priority": 0
+      },
+      "minecraft:behavior.pickup_items": {
+        "priority": 2,
+        "can_pickup_any_item": true,
+        "max_dist": 8,
+        "goal_radius": 1.2,
+        "speed_multiplier": 1.15,
+        "pickup_based_on_chance": false
+      },
+      "minecraft:behavior.open_door": {
+        "priority": 5,
+        "close_door_after": true
+      },
+      "minecraft:behavior.random_stroll": {
+        "priority": 8,
+        "speed_multiplier": 0.82,
+        "xz_dist": 12,
+        "y_dist": 4
+      },
+      "minecraft:behavior.look_at_player": {
+        "priority": 9,
+        "look_distance": 12,
+        "probability": 0.08
+      },
+      "minecraft:behavior.look_at_entity": {
+        "priority": 10,
+        "look_distance": 8,
+        "probability": 0.05
+      },
+      "minecraft:behavior.random_look_around": {
+        "priority": 11
+      },
+      "minecraft:conditional_bandwidth_optimization": {}
+    },
+    "events": {
+      "minecraft:entity_spawned": {
+        "randomize": [
+          {
+            "weight": 1,
+            "add": { "component_groups": ["aip:skin_steve", "aip:mode_work"] }
+          },
+          {
+            "weight": 1,
+            "add": { "component_groups": ["aip:skin_alex", "aip:mode_work"] }
+          }
+        ]
+      },
+      "aip:idle": {
+        "remove": { "component_groups": ["aip:mode_work", "aip:mode_sprint", "aip:mode_guard"] },
+        "add": { "component_groups": ["aip:mode_idle"] }
+      },
+      "aip:work": {
+        "remove": { "component_groups": ["aip:mode_idle", "aip:mode_sprint", "aip:mode_guard"] },
+        "add": { "component_groups": ["aip:mode_work"] }
+      },
+      "aip:sprint": {
+        "remove": { "component_groups": ["aip:mode_idle", "aip:mode_work", "aip:mode_guard"] },
+        "add": { "component_groups": ["aip:mode_sprint"] }
+      },
+      "aip:guard": {
+        "remove": { "component_groups": ["aip:mode_idle", "aip:mode_work", "aip:mode_sprint"] },
+        "add": { "component_groups": ["aip:mode_guard"] }
+      }
+    }
+  }
+}
